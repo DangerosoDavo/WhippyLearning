@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ChatApp - Making It Work!</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #1a1a2e;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      #chat-app {
+        width: 400px;
+        height: 600px;
+        background-color: white;
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      #chat-header {
+        background-color: #6c5ce7;
+        color: white;
+        padding: 15px 20px;
+      }
+
+      #chat-header h1 {
+        font-size: 18px;
+        font-weight: normal;
+      }
+
+      #chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 15px;
+        background-color: #f8f9fa;
+      }
+
+      .message {
+        max-width: 75%;
+        padding: 10px 15px;
+        margin: 4px 10px;
+        border-radius: 18px;
+        font-size: 14px;
+        word-wrap: break-word;
+      }
+
+      .message.sent {
+        background-color: #6c5ce7;
+        color: white;
+        margin-left: auto;
+      }
+
+      .message.received {
+        background-color: #e9ecef;
+        color: #333;
+        margin-right: auto;
+      }
+
+      .sender-name {
+        font-size: 11px;
+        color: #999;
+        margin: 8px 12px 2px 12px;
+      }
+
+      .sender-name.sent-name {
+        text-align: right;
+      }
+
+      .time-stamp {
+        font-size: 10px;
+        color: #bbb;
+        margin: 1px 12px 4px 12px;
+      }
+
+      .time-stamp.sent-time {
+        text-align: right;
+      }
+
+      #chat-input-area {
+        display: flex;
+        padding: 10px;
+        background-color: white;
+        border-top: 1px solid #eee;
+      }
+
+      #message-input {
+        flex: 1;
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        font-size: 14px;
+        outline: none;
+      }
+
+      #message-input:focus {
+        border-color: #6c5ce7;
+      }
+
+      #send-btn {
+        background-color: #6c5ce7;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin-left: 8px;
+        border-radius: 20px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      #send-btn:hover {
+        background-color: #5a4bd1;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="chat-app">
+      <div id="chat-header">
+        <h1>ChatApp</h1>
+      </div>
+
+      <div id="chat-messages">
+        <!-- Messages will be added here by JavaScript -->
+      </div>
+
+      <div id="chat-input-area">
+        <input type="text" id="message-input" placeholder="Type a message...">
+        <button id="send-btn">Send</button>
+      </div>
+    </div>
+
+    <script>
+      // ==========================================
+      // STEP 1: Set up your data
+      // Create an empty array called "messages"
+      // Create a variable "currentUser" set to "Bret"
+      // ==========================================
+
+      // YOUR CODE HERE:
+
+
+      // ==========================================
+      // STEP 2: Get references to the HTML elements
+      // You need: chat-messages, message-input, send-btn
+      // ==========================================
+
+      // YOUR CODE HERE:
+
+
+      // ==========================================
+      // STEP 3: Write the displayMessage function
+      //
+      // It should take a message object as a parameter
+      // and create the HTML elements to show it.
+      //
+      // A message object looks like:
+      //   { sender: "Bret", text: "Hello!", time: "2:30 PM" }
+      //
+      // For each message, create:
+      //   1. A div with class "sender-name" (add "sent-name"
+      //      class if sender === currentUser)
+      //   2. A div with class "message" and text content
+      //      (add "sent" class if sender === currentUser,
+      //       otherwise add "received")
+      //   3. Append both to the chat messages container
+      // ==========================================
+
+      // YOUR CODE HERE:
+
+
+      // ==========================================
+      // STEP 4: Write the sendMessage function
+      //
+      //   a. Get text from input and trim() it
+      //   b. If empty, return (do nothing)
+      //   c. Create message object with sender, text, and time
+      //      (for time, use: new Date().toLocaleTimeString(
+      //        [], { hour: '2-digit', minute: '2-digit' }))
+      //   d. Push to messages array
+      //   e. Call displayMessage with the new message
+      //   f. Clear the input (input.value = "")
+      //   g. Scroll to bottom:
+      //      chatMessages.scrollTop = chatMessages.scrollHeight
+      // ==========================================
+
+      // YOUR CODE HERE:
+
+
+      // ==========================================
+      // STEP 5: Add event listeners
+      //
+      //   a. sendBtn click → call sendMessage
+      //   b. messageInput keydown → if Enter, call sendMessage
+      // ==========================================
+
+      // YOUR CODE HERE:
+
+
+      // ==========================================
+      // STEP 6: Add some starter messages so the
+      // chat doesn't look empty!
+      //
+      // Create a few message objects manually and
+      // call displayMessage for each one.
+      //
+      // Example:
+      //   displayMessage({
+      //     sender: "Dave",
+      //     text: "Hey! Try typing a message below!",
+      //     time: "2:00 PM"
+      //   });
+      // ==========================================
+
+      // YOUR CODE HERE:
+
+
+      // ==========================================
+      // TEST IT!
+      // Open this file in your browser.
+      // Type a message and click Send (or press Enter).
+      // You should see your messages appear!
+      //
+      // If something isn't working, open the Console
+      // (right-click > Inspect > Console) to check
+      // for error messages.
+      // ==========================================
+
+    </script>
+
+  </body>
+</html>

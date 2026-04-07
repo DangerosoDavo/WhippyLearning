@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>If/Else and Functions Exercise</title>
+    <style>
+      body { font-family: Arial, sans-serif; padding: 20px; }
+      .result {
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        background-color: #f0f0f0;
+      }
+      .pass { background-color: #d4edda; color: #155724; }
+      .fail { background-color: #f8d7da; color: #721c24; }
+    </style>
+  </head>
+  <body>
+
+    <h1>If/Else and Functions Exercises</h1>
+
+    <!-- EXERCISE 1: Age Checker -->
+    <h2>Exercise 1: Age Checker</h2>
+    <input type="number" id="age-input" placeholder="Enter an age">
+    <button id="age-btn">Check</button>
+    <p id="age-result" class="result">Enter an age and click Check</p>
+
+    <script>
+      // When the button is clicked, read the age from the input.
+      // If age >= 18, show "Adult" in the result.
+      // If age >= 13, show "Teenager".
+      // Otherwise, show "Child".
+      //
+      // Hint: use Number(input.value) to convert the text to a number
+
+      let ageBtn = document.getElementById("age-btn");
+      let ageInput = document.getElementById("age-input");
+      let ageResult = document.getElementById("age-result");
+
+      ageBtn.addEventListener("click", function() {
+        let age = Number(ageInput.value);
+
+        // YOUR IF/ELSE CODE HERE:
+
+      });
+    </script>
+
+    <hr>
+
+    <!-- EXERCISE 2: Password Checker -->
+    <h2>Exercise 2: Password Strength</h2>
+    <input type="text" id="pass-input" placeholder="Enter a password">
+    <p id="pass-result" class="result">Type a password to check its strength</p>
+
+    <script>
+      // As the user types, check the password length:
+      // Less than 4 characters: "Weak" (and add class "fail")
+      // 4-7 characters: "Medium" (remove fail/pass classes)
+      // 8 or more: "Strong" (and add class "pass")
+      //
+      // Hint: use the "input" event and .value.length
+
+      let passInput = document.getElementById("pass-input");
+      let passResult = document.getElementById("pass-result");
+
+      passInput.addEventListener("input", function() {
+        let length = passInput.value.length;
+
+        // YOUR CODE HERE:
+
+      });
+    </script>
+
+    <hr>
+
+    <!-- EXERCISE 3: Write a Function -->
+    <h2>Exercise 3: Greeting Function</h2>
+    <input type="text" id="name-input" placeholder="Enter a name">
+    <button id="greet-btn">Greet</button>
+    <p id="greet-result" class="result"></p>
+
+    <script>
+      // STEP 1: Write a function called "makeGreeting" that:
+      //   - Takes a "name" parameter
+      //   - Returns a string like "Hello, Bret! Welcome!"
+      //   - BUT if name is empty, returns "Please enter a name."
+      //
+      // STEP 2: When the button is clicked, call your function
+      //   with the input's value and display the result
+
+      // YOUR FUNCTION HERE:
+
+
+      let greetBtn = document.getElementById("greet-btn");
+      let nameInput = document.getElementById("name-input");
+      let greetResult = document.getElementById("greet-result");
+
+      greetBtn.addEventListener("click", function() {
+        // YOUR CODE HERE (call makeGreeting and display result):
+
+      });
+    </script>
+
+    <hr>
+
+    <!-- EXERCISE 4: Calculator Function -->
+    <h2>Exercise 4: Simple Calculator</h2>
+    <input type="number" id="num1" placeholder="Number 1" style="width: 80px">
+    <select id="operator">
+      <option value="add">+</option>
+      <option value="subtract">-</option>
+      <option value="multiply">x</option>
+      <option value="divide">/</option>
+    </select>
+    <input type="number" id="num2" placeholder="Number 2" style="width: 80px">
+    <button id="calc-btn">=</button>
+    <span id="calc-result" class="result" style="display: inline-block; min-width: 50px;">?</span>
+
+    <script>
+      // Write a function called "calculate" that takes three
+      // parameters: num1, num2, and operator (a string).
+      //
+      // Use if/else to check the operator:
+      //   "add" → return num1 + num2
+      //   "subtract" → return num1 - num2
+      //   "multiply" → return num1 * num2
+      //   "divide" → return num1 / num2
+      //
+      // Then wire up the button to call your function
+      // and display the result.
+
+      // YOUR FUNCTION HERE:
+
+
+      let calcBtn = document.getElementById("calc-btn");
+
+      calcBtn.addEventListener("click", function() {
+        let n1 = Number(document.getElementById("num1").value);
+        let n2 = Number(document.getElementById("num2").value);
+        let op = document.getElementById("operator").value;
+
+        // YOUR CODE HERE (call calculate and display result):
+
+      });
+    </script>
+
+    <hr>
+
+    <!-- EXERCISE 5 (BONUS): Message Validator -->
+    <h2>Exercise 5 (Bonus): Message Validator</h2>
+    <input type="text" id="msg-input" placeholder="Type a message...">
+    <button id="send-btn">Send</button>
+    <p id="msg-feedback" class="result"></p>
+    <div id="msg-list"></div>
+
+    <script>
+      // Write a function called "validateMessage" that takes
+      // a message string and:
+      //   - Returns "Message is empty!" if the string is empty
+      //   - Returns "Message is too long!" if over 50 characters
+      //   - Returns "" (empty string) if the message is valid
+      //
+      // When Send is clicked:
+      //   1. Validate the message
+      //   2. If there's an error, show it in msg-feedback
+      //   3. If valid, create a new <p> with the message text
+      //      and add it to msg-list, then clear the input
+
+      // YOUR CODE HERE:
+
+    </script>
+
+  </body>
+</html>

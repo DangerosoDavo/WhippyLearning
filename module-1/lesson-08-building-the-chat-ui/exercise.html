@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ChatApp - Building the UI</title>
+    <style>
+      /* Reset default browser spacing */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #1a1a2e;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      /* ==========================================
+         The main chat container
+         Make it look like a phone/chat window
+         ========================================== */
+      #chat-app {
+        width: 400px;
+        height: 600px;
+        background-color: white;
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      /* ==========================================
+         EXERCISE 1: Style the header
+         - Give it a background-color (try #6c5ce7)
+         - Set color to white
+         - Add padding (try 15px 20px)
+         ========================================== */
+      #chat-header {
+        /* YOUR CSS HERE */
+      }
+
+      #chat-header h1 {
+        font-size: 18px;
+        font-weight: normal;
+      }
+
+      /* ==========================================
+         EXERCISE 2: Style the messages area
+         - Set flex: 1 (to fill available space)
+         - Set overflow-y: auto (for scrolling)
+         - Add padding: 15px
+         - Set background-color: #f8f9fa
+         ========================================== */
+      #chat-messages {
+        /* YOUR CSS HERE */
+      }
+
+      /* ==========================================
+         EXERCISE 3: Style the message bubbles
+         - max-width: 75%
+         - padding: 10px 15px
+         - margin: 4px 10px
+         - border-radius: 18px
+         - font-size: 14px
+         - word-wrap: break-word
+         ========================================== */
+      .message {
+        /* YOUR CSS HERE */
+      }
+
+      /* These are pre-done: sent vs received message colors */
+      .message.sent {
+        background-color: #6c5ce7;
+        color: white;
+        margin-left: auto;  /* pushes to the right side */
+      }
+
+      .message.received {
+        background-color: #e9ecef;
+        color: #333;
+        margin-right: auto;  /* pushes to the left side */
+      }
+
+      .sender-name {
+        font-size: 11px;
+        color: #999;
+        margin: 8px 12px 2px 12px;
+      }
+
+      /* ==========================================
+         EXERCISE 4: Style the input area
+         - display: flex
+         - padding: 10px
+         - background-color: white
+         - border-top: 1px solid #eee
+         ========================================== */
+      #chat-input-area {
+        /* YOUR CSS HERE */
+      }
+
+      /* ==========================================
+         EXERCISE 5: Style the text input
+         - flex: 1  (fill available width)
+         - padding: 10px 15px
+         - border: 1px solid #ddd
+         - border-radius: 20px
+         - font-size: 14px
+         - outline: none  (removes the blue outline when focused)
+         ========================================== */
+      #message-input {
+        /* YOUR CSS HERE */
+      }
+
+      /* ==========================================
+         EXERCISE 6: Style the send button
+         - background-color: #6c5ce7
+         - color: white
+         - border: none
+         - padding: 10px 20px
+         - margin-left: 8px
+         - border-radius: 20px
+         - font-size: 14px
+         - cursor: pointer  (shows hand cursor on hover)
+         ========================================== */
+      #send-btn {
+        /* YOUR CSS HERE */
+      }
+
+      /* Hover effect for the button (already done for you) */
+      #send-btn:hover {
+        background-color: #5a4bd1;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="chat-app">
+      <!-- Header -->
+      <div id="chat-header">
+        <h1>ChatApp</h1>
+      </div>
+
+      <!-- Messages Area -->
+      <div id="chat-messages">
+        <!--
+          These are sample messages so you can see your
+          styling take effect. In the next lesson, we'll
+          create these with JavaScript instead.
+        -->
+        <div class="sender-name">Dave</div>
+        <div class="message received">Hey Bret! How's the coding going?</div>
+
+        <div class="sender-name">Bret</div>
+        <div class="message sent">Really well! I'm building a chat app!</div>
+
+        <div class="sender-name">Dave</div>
+        <div class="message received">That's awesome! You've come a long way since Lesson 1.</div>
+
+        <div class="sender-name">Bret</div>
+        <div class="message sent">Thanks! HTML, CSS, and JavaScript are actually pretty fun.</div>
+
+        <div class="sender-name">Dave</div>
+        <div class="message received">Wait until you see it actually work with real JavaScript in the next lesson!</div>
+      </div>
+
+      <!-- Input Area -->
+      <div id="chat-input-area">
+        <input type="text" id="message-input" placeholder="Type a message...">
+        <button id="send-btn">Send</button>
+      </div>
+    </div>
+
+  </body>
+</html>

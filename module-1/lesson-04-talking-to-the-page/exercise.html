@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DOM Exercise</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      .highlight {
+        background-color: yellow;
+        padding: 5px;
+      }
+      .fancy {
+        color: purple;
+        font-style: italic;
+        border-left: 3px solid purple;
+        padding-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1 id="main-title">Welcome to the DOM</h1>
+
+    <p id="description">This text can be changed with JavaScript.</p>
+
+    <p id="color-demo">Change my color!</p>
+
+    <p id="class-demo">Add a class to me!</p>
+
+    <div id="container">
+      <p>I'm inside the container.</p>
+    </div>
+
+    <input type="text" id="user-input" placeholder="Type something here...">
+    <p id="mirror">You typed: (nothing yet)</p>
+
+    <script>
+      // ==========================================
+      // EXERCISE 1: Change the text
+      // Find the element with id="description"
+      // and change its textContent to something new
+      // ==========================================
+
+      // YOUR CODE HERE:
+
+
+      // ==========================================
+      // EXERCISE 2: Change the color
+      // Find the element with id="color-demo"
+      // and change its style.color to "blue"
+      // Also change its style.fontWeight to "bold"
+      // ==========================================
+
+      // YOUR CODE HERE:
+
+
+      // ==========================================
+      // EXERCISE 3: Add a class
+      // Find the element with id="class-demo"
+      // and add the class "fancy" to it using classList.add
+      // (The CSS for "fancy" is already defined above)
+      // ==========================================
+
+      // YOUR CODE HERE:
+
+
+      // ==========================================
+      // EXERCISE 4: Create a new element
+      // Create a new <p> element
+      // Set its textContent to "I was created by JavaScript!"
+      // Append it to the element with id="container"
+      //
+      // Hint:
+      //   let newP = document.createElement("p");
+      //   newP.textContent = "...";
+      //   let container = document.getElementById("container");
+      //   container.appendChild(newP);
+      // ==========================================
+
+      // YOUR CODE HERE:
+
+
+      // ==========================================
+      // EXERCISE 5: Read an input value
+      // This one is a preview of events (next lesson).
+      // For now, just try this:
+      //
+      // let input = document.getElementById("user-input");
+      // let mirror = document.getElementById("mirror");
+      //
+      // Then type something in the input box and run
+      // this in the CONSOLE:
+      //   mirror.textContent = "You typed: " + input.value;
+      //
+      // You should see the mirror text change!
+      // ==========================================
+
+      // Set up the variables here:
+      // let input = document.getElementById("user-input");
+      // let mirror = document.getElementById("mirror");
+
+    </script>
+
+  </body>
+</html>

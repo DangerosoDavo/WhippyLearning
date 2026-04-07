@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Events Exercise</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      .box {
+        width: 150px;
+        height: 150px;
+        background-color: #3498db;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        margin: 10px 0;
+      }
+      #todo-list li {
+        padding: 5px 0;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>Events Exercises</h1>
+
+    <!-- EXERCISE 1: Click Counter -->
+    <h2>Exercise 1: Click Counter</h2>
+    <p>Count: <span id="count">0</span></p>
+    <button id="count-btn">Click Me!</button>
+
+    <script>
+      // Make the button increase the count each time it's clicked
+      // Hint: You need a variable to track the count,
+      // then update both the variable and the display
+
+      // YOUR CODE HERE:
+
+    </script>
+
+    <hr>
+
+    <!-- EXERCISE 2: Live Typing -->
+    <h2>Exercise 2: Live Typing Mirror</h2>
+    <input type="text" id="type-input" placeholder="Type something...">
+    <p>You are typing: <strong id="type-output"></strong></p>
+
+    <script>
+      // Make the text update in real-time as the user types
+      // Use the "input" event on the input field
+      // Set the textContent of type-output to the input's value
+
+      // YOUR CODE HERE:
+
+    </script>
+
+    <hr>
+
+    <!-- EXERCISE 3: Color Changer -->
+    <h2>Exercise 3: Color Changer</h2>
+    <div class="box" id="color-box">Click me!</div>
+
+    <script>
+      // Each time the box is clicked, change its background color
+      // to a random color.
+      //
+      // Here's a helper to generate a random color:
+      // let randomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+      //
+      // Then set: box.style.backgroundColor = randomColor;
+
+      // YOUR CODE HERE:
+
+    </script>
+
+    <hr>
+
+    <!-- EXERCISE 4: Enter Key Detection -->
+    <h2>Exercise 4: Press Enter to Add</h2>
+    <input type="text" id="item-input" placeholder="Type an item and press Enter">
+    <ul id="item-list"></ul>
+
+    <script>
+      // When the user presses Enter in the input field, take
+      // the text they typed, create a new <li>, and add it
+      // to the item-list.
+      //
+      // Then clear the input field (set input.value = "")
+      //
+      // Hint: Use "keydown" event and check event.key === "Enter"
+
+      // YOUR CODE HERE:
+
+    </script>
+
+    <hr>
+
+    <!-- EXERCISE 5 (BONUS): Character Counter -->
+    <h2>Exercise 5 (Bonus): Character Counter</h2>
+    <textarea id="message-area" rows="4" cols="40" placeholder="Type a message..."></textarea>
+    <p>Characters: <span id="char-count">0</span> / 100</p>
+
+    <script>
+      // As the user types in the textarea, update the character
+      // count. BONUS: change the color of the count to red
+      // when they go over 100 characters.
+      //
+      // Hint: use the "input" event
+      // The length of text is: textarea.value.length
+
+      // YOUR CODE HERE:
+
+    </script>
+
+  </body>
+</html>

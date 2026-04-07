@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Arrays and Loops Exercise</title>
+    <style>
+      body { font-family: Arial, sans-serif; padding: 20px; }
+      .message {
+        padding: 8px 12px;
+        margin: 5px 0;
+        background-color: #e8f4f8;
+        border-radius: 12px;
+        display: inline-block;
+      }
+      .message-container {
+        margin: 5px 0;
+      }
+      .sender {
+        font-size: 12px;
+        color: #666;
+        margin-bottom: 2px;
+      }
+      #output {
+        border: 1px solid #ccc;
+        padding: 10px;
+        min-height: 50px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>Arrays and Loops Exercises</h1>
+
+    <!-- EXERCISE 1: Display a List -->
+    <h2>Exercise 1: Display a Shopping List</h2>
+    <ul id="shopping-list"></ul>
+
+    <script>
+      // Create an array of 5 grocery items (strings).
+      // Use a loop to create an <li> element for each item
+      // and append it to the shopping-list <ul>.
+
+      // YOUR CODE HERE:
+
+    </script>
+
+    <hr>
+
+    <!-- EXERCISE 2: Number Crunching -->
+    <h2>Exercise 2: Sum Calculator</h2>
+    <p id="sum-result"></p>
+
+    <script>
+      // Given this array of numbers:
+      let numbers = [10, 25, 3, 47, 8, 31, 15];
+
+      // Use a loop to calculate the total sum of all numbers.
+      // Display the result in the sum-result paragraph.
+      // Expected: "The sum is: 139"
+
+      // YOUR CODE HERE:
+
+    </script>
+
+    <hr>
+
+    <!-- EXERCISE 3: Dynamic List -->
+    <h2>Exercise 3: Build a List</h2>
+    <input type="text" id="list-input" placeholder="Add an item...">
+    <button id="list-add-btn">Add</button>
+    <button id="list-clear-btn">Clear All</button>
+    <ul id="dynamic-list"></ul>
+
+    <script>
+      // Create an empty array called "items"
+      // When "Add" is clicked:
+      //   1. Push the input value to the array
+      //   2. Clear and re-render the entire list
+      // When "Clear All" is clicked:
+      //   1. Empty the array (items = [])
+      //   2. Clear the displayed list
+      //
+      // Hint for clearing displayed list:
+      //   list.innerHTML = "";
+      //
+      // Hint for re-rendering: write a function called
+      // renderList() that clears the <ul> and loops
+      // through the array to add each item
+
+      // YOUR CODE HERE:
+
+    </script>
+
+    <hr>
+
+    <!-- EXERCISE 4: Array of Objects -->
+    <h2>Exercise 4: Display Messages</h2>
+    <div id="message-display"></div>
+
+    <script>
+      // Given this array of message objects:
+      let messages = [
+        { sender: "Bret", text: "Hey, what's up?" },
+        { sender: "Dave", text: "Not much, working on code!" },
+        { sender: "Bret", text: "Nice! Can you help me?" },
+        { sender: "Dave", text: "Of course!" }
+      ];
+
+      // Loop through the messages array and for each message:
+      //   1. Create a div with class "message-container"
+      //   2. Inside it, create a div with class "sender"
+      //      containing the sender name
+      //   3. Create another div with class "message"
+      //      containing the message text
+      //   4. Append the container to #message-display
+      //
+      // This is basically what the chat app will do!
+
+      let display = document.getElementById("message-display");
+
+      // YOUR CODE HERE:
+
+    </script>
+
+    <hr>
+
+    <!-- EXERCISE 5 (BONUS): Interactive Message List -->
+    <h2>Exercise 5 (Bonus): Mini Chat</h2>
+    <div id="mini-chat" style="border: 1px solid #ccc; padding: 10px; min-height: 100px; border-radius: 5px; margin-bottom: 10px;"></div>
+    <input type="text" id="chat-name" placeholder="Your name" style="width: 100px;">
+    <input type="text" id="chat-msg" placeholder="Type a message...">
+    <button id="chat-send">Send</button>
+
+    <script>
+      // Combine everything you've learned!
+      // 1. Create an empty messages array
+      // 2. When Send is clicked (or Enter is pressed):
+      //    a. Get the name and message from the inputs
+      //    b. If either is empty, do nothing
+      //    c. Push an object { sender: name, text: message }
+      //       to the array
+      //    d. Re-render all messages in #mini-chat
+      //    e. Clear the message input (but keep the name)
+      //
+      // Congratulations — you're basically building the chat app!
+
+      // YOUR CODE HERE:
+
+    </script>
+
+  </body>
+</html>

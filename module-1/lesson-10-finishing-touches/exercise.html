@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ChatApp - Complete!</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #1a1a2e;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      #chat-app {
+        width: 420px;
+        height: 650px;
+        background-color: white;
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      #chat-header {
+        background-color: #6c5ce7;
+        color: white;
+        padding: 12px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      #chat-header h1 {
+        font-size: 18px;
+        font-weight: normal;
+      }
+
+      #header-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      #username-input {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 12px;
+        font-size: 12px;
+        width: 90px;
+        outline: none;
+      }
+
+      #clear-btn {
+        background-color: rgba(255,255,255,0.2);
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 12px;
+        font-size: 11px;
+        cursor: pointer;
+      }
+
+      #clear-btn:hover {
+        background-color: rgba(255,255,255,0.3);
+      }
+
+      #chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 15px;
+        background-color: #f8f9fa;
+      }
+
+      .message {
+        max-width: 75%;
+        padding: 10px 15px;
+        margin: 4px 10px;
+        border-radius: 18px;
+        font-size: 14px;
+        word-wrap: break-word;
+      }
+
+      .message.sent {
+        background-color: #6c5ce7;
+        color: white;
+        margin-left: auto;
+      }
+
+      .message.received {
+        background-color: #e9ecef;
+        color: #333;
+        margin-right: auto;
+      }
+
+      .sender-name {
+        font-size: 11px;
+        color: #999;
+        margin: 8px 12px 2px 12px;
+      }
+
+      .sender-name.sent-name {
+        text-align: right;
+      }
+
+      .time-stamp {
+        font-size: 10px;
+        color: #bbb;
+        margin: 1px 12px 4px 12px;
+      }
+
+      .time-stamp.sent-time {
+        text-align: right;
+      }
+
+      #chat-input-area {
+        display: flex;
+        padding: 10px;
+        background-color: white;
+        border-top: 1px solid #eee;
+      }
+
+      #message-input {
+        flex: 1;
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        font-size: 14px;
+        outline: none;
+      }
+
+      #message-input:focus {
+        border-color: #6c5ce7;
+      }
+
+      #send-btn {
+        background-color: #6c5ce7;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin-left: 8px;
+        border-radius: 20px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      #send-btn:hover {
+        background-color: #5a4bd1;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="chat-app">
+      <!-- Header with username input and clear button -->
+      <div id="chat-header">
+        <h1>ChatApp</h1>
+        <div id="header-controls">
+          <input type="text" id="username-input" value="Bret" placeholder="Your name">
+          <button id="clear-btn">Clear</button>
+        </div>
+      </div>
+
+      <!-- Messages Area -->
+      <div id="chat-messages"></div>
+
+      <!-- Input Area -->
+      <div id="chat-input-area">
+        <input type="text" id="message-input" placeholder="Type a message...">
+        <button id="send-btn">Send</button>
+      </div>
+    </div>
+
+    <script>
+      // ==========================================
+      // DATA
+      // ==========================================
+      let messages = [];
+
+      // ==========================================
+      // ELEMENT REFERENCES
+      // ==========================================
+      let chatMessages = document.getElementById("chat-messages");
+      let messageInput = document.getElementById("message-input");
+      let sendBtn = document.getElementById("send-btn");
+      let usernameInput = document.getElementById("username-input");
+      let clearBtn = document.getElementById("clear-btn");
+
+      // ==========================================
+      // FINISHING TOUCH 1: Save and Load Messages
+      //
+      // Write a saveMessages() function that saves
+      // the messages array to localStorage.
+      //
+      // Write a loadMessages() function that loads
+      // messages from localStorage and displays them.
+      //
+      // Hint:
+      //   localStorage.setItem("chatMessages", JSON.stringify(messages));
+      //   let saved = localStorage.getItem("chatMessages");
+      //   if (saved) { messages = JSON.parse(saved); }
+      // ==========================================
+
+      function saveMessages() {
+        // YOUR CODE HERE:
+
+      }
+
+      function loadMessages() {
+        // YOUR CODE HERE:
+
+      }
+
+      // ==========================================
+      // DISPLAY FUNCTION
+      //
+      // FINISHING TOUCH 2: Add timestamps
+      // After the message bubble, create a time-stamp
+      // div showing message.time
+      // ==========================================
+
+      function displayMessage(message) {
+        let currentUser = usernameInput.value.trim() || "Anonymous";
+
+        // Sender name
+        let senderDiv = document.createElement("div");
+        senderDiv.classList.add("sender-name");
+        senderDiv.textContent = message.sender;
+        if (message.sender === currentUser) {
+          senderDiv.classList.add("sent-name");
+        }
+
+        // Message bubble
+        let messageDiv = document.createElement("div");
+        messageDiv.classList.add("message");
+        messageDiv.textContent = message.text;
+        if (message.sender === currentUser) {
+          messageDiv.classList.add("sent");
+        } else {
+          messageDiv.classList.add("received");
+        }
+
+        // Add to chat
+        chatMessages.appendChild(senderDiv);
+        chatMessages.appendChild(messageDiv);
+
+        // FINISHING TOUCH 2: Add the timestamp div here
+        // Create a div with class "time-stamp"
+        // Set its textContent to message.time
+        // If sender === currentUser, also add class "sent-time"
+        // Append it to chatMessages
+
+        // YOUR CODE HERE:
+
+      }
+
+      // ==========================================
+      // SEND FUNCTION
+      // ==========================================
+
+      function sendMessage() {
+        let text = messageInput.value.trim();
+        let currentUser = usernameInput.value.trim() || "Anonymous";
+
+        if (!text) {
+          return;
+        }
+
+        let message = {
+          sender: currentUser,
+          text: text,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        };
+
+        messages.push(message);
+        displayMessage(message);
+
+        // FINISHING TOUCH 1: Call saveMessages() here
+        // YOUR CODE HERE:
+
+        messageInput.value = "";
+        messageInput.focus();
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        // FINISHING TOUCH 3: Call simulateReply() here
+        // (uncomment the line below after writing the function)
+        // simulateReply();
+      }
+
+      // ==========================================
+      // FINISHING TOUCH 3: Simulated Replies
+      //
+      // Write a simulateReply() function that:
+      //   1. Has an array of reply strings
+      //   2. Picks a random one
+      //   3. After a 1-second delay (setTimeout), creates
+      //      a message from "ChatBot" and displays it
+      //
+      // Then uncomment the simulateReply() call in
+      // sendMessage above.
+      // ==========================================
+
+      function simulateReply() {
+        let replies = [
+          "That's interesting!",
+          "Tell me more!",
+          "Haha, nice one!",
+          "Cool!",
+          "I see what you mean.",
+          "Good point!",
+          "Really? No way!",
+          "Awesome!"
+        ];
+
+        // YOUR CODE HERE:
+        // 1. Pick a random reply:
+        //    let randomIndex = Math.floor(Math.random() * replies.length);
+        //    let replyText = replies[randomIndex];
+        //
+        // 2. Use setTimeout to delay the reply:
+        //    setTimeout(function() {
+        //      let reply = { sender: "ChatBot", text: replyText,
+        //        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) };
+        //      messages.push(reply);
+        //      displayMessage(reply);
+        //      saveMessages();
+        //      chatMessages.scrollTop = chatMessages.scrollHeight;
+        //    }, 1000);
+
+      }
+
+      // ==========================================
+      // FINISHING TOUCH 4: Clear Chat
+      // Wire up the clear button to:
+      //   1. Empty the messages array
+      //   2. Remove saved messages from localStorage
+      //   3. Clear the chat display (chatMessages.innerHTML = "")
+      // ==========================================
+
+      clearBtn.addEventListener("click", function() {
+        // YOUR CODE HERE:
+
+      });
+
+      // ==========================================
+      // EVENT LISTENERS
+      // ==========================================
+
+      sendBtn.addEventListener("click", function() {
+        sendMessage();
+      });
+
+      messageInput.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+          sendMessage();
+        }
+      });
+
+      // ==========================================
+      // STARTUP
+      // ==========================================
+
+      // Load saved messages (uncomment after implementing)
+      // loadMessages();
+
+      // Auto-focus the input
+      messageInput.focus();
+
+      // If no saved messages, show a welcome message
+      if (messages.length === 0) {
+        displayMessage({
+          sender: "ChatBot",
+          text: "Welcome to ChatApp! Type a message below to get started.",
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        });
+      }
+
+    </script>
+
+  </body>
+</html>
