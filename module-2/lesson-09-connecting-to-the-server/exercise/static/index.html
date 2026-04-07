@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ChatApp - Connecting</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #1a1a2e;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      #chat-app {
+        width: 420px;
+        height: 650px;
+        background-color: white;
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+      #chat-header {
+        background-color: #6c5ce7;
+        color: white;
+        padding: 12px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      #chat-header h1 { font-size: 18px; font-weight: normal; }
+      #username-input {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 12px;
+        font-size: 12px;
+        width: 90px;
+        outline: none;
+      }
+      #connection-status {
+        font-size: 11px;
+        padding: 6px 12px;
+        text-align: center;
+      }
+      #connection-status.connecting {
+        background-color: #fff3cd;
+        color: #856404;
+      }
+      #connection-status.connected {
+        background-color: #d4edda;
+        color: #155724;
+      }
+      #connection-status.disconnected {
+        background-color: #f8d7da;
+        color: #721c24;
+      }
+      #chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 15px;
+        background-color: #f8f9fa;
+      }
+      .system-msg {
+        text-align: center;
+        color: #999;
+        font-size: 12px;
+        margin: 10px 0;
+        font-style: italic;
+      }
+      .message {
+        max-width: 75%;
+        padding: 10px 15px;
+        margin: 4px 10px;
+        border-radius: 18px;
+        font-size: 14px;
+        word-wrap: break-word;
+      }
+      .message.sent {
+        background-color: #6c5ce7;
+        color: white;
+        margin-left: auto;
+      }
+      .message.received {
+        background-color: #e9ecef;
+        color: #333;
+        margin-right: auto;
+      }
+      .sender-name {
+        font-size: 11px;
+        color: #999;
+        margin: 8px 12px 2px 12px;
+      }
+      .sender-name.sent-name { text-align: right; }
+      #chat-input-area {
+        display: flex;
+        padding: 10px;
+        background-color: white;
+        border-top: 1px solid #eee;
+      }
+      #message-input {
+        flex: 1;
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        font-size: 14px;
+        outline: none;
+      }
+      #message-input:focus { border-color: #6c5ce7; }
+      #send-btn {
+        background-color: #6c5ce7;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin-left: 8px;
+        border-radius: 20px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+      #send-btn:hover { background-color: #5a4bd1; }
+      #send-btn:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="chat-app">
+      <div id="chat-header">
+        <h1>ChatApp</h1>
+        <input type="text" id="username-input" value="Bret" placeholder="Your name">
+      </div>
+
+      <div id="connection-status" class="connecting">Connecting...</div>
+
+      <div id="chat-messages"></div>
+
+      <div id="chat-input-area">
+        <input type="text" id="message-input" placeholder="Type a message..." disabled>
+        <button id="send-btn" disabled>Send</button>
+      </div>
+    </div>
+
+    <script>
+      // Element references
+      let chatMessages = document.getElementById("chat-messages");
+      let messageInput = document.getElementById("message-input");
+      let sendBtn = document.getElementById("send-btn");
+      let usernameInput = document.getElementById("username-input");
+      let connectionStatus = document.getElementById("connection-status");
+
+      // We'll store the WebSocket connection here
+      let ws = null;
+
+      // Helper: add a system message to the chat
+      function addSystemMessage(text) {
+        let div = document.createElement("div");
+        div.classList.add("system-msg");
+        div.textContent = text;
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      // ==========================================
+      // EXERCISE 1: Update connection status
+      // Write a function that updates the status bar
+      // based on the state: "connecting", "connected",
+      // or "disconnected".
+      //
+      // It should:
+      //   - Update the text of connectionStatus
+      //   - Remove all state classes, then add the right one
+      //   - Enable/disable the input and button
+      //     (disabled when not connected)
+      //
+      // Hint:
+      //   connectionStatus.className = "";  // removes all classes
+      //   connectionStatus.classList.add(state);
+      //   messageInput.disabled = (state !== "connected");
+      //   sendBtn.disabled = (state !== "connected");
+      // ==========================================
+
+      function updateStatus(state) {
+        // YOUR CODE HERE:
+
+      }
+
+      // ==========================================
+      // EXERCISE 2: Write the connect function
+      // This function should:
+      //   a. Update status to "connecting"
+      //   b. Create new WebSocket("ws://localhost:8080/ws")
+      //   c. Set ws.onopen to:
+      //      - Update status to "connected"
+      //      - Add system message "Connected to server!"
+      //      - Focus the message input
+      //   d. Set ws.onmessage to:
+      //      - Just console.log the data for now
+      //        (we'll handle this properly in Lesson 10)
+      //   e. Set ws.onclose to:
+      //      - Update status to "disconnected"
+      //      - Add system message "Disconnected."
+      //      - Auto-reconnect after 3 seconds using setTimeout
+      //   f. Set ws.onerror to:
+      //      - console.log the error
+      //   g. Store the WebSocket in the ws variable
+      // ==========================================
+
+      function connect() {
+        // YOUR CODE HERE:
+
+      }
+
+      // ==========================================
+      // EXERCISE 3: Start the connection
+      // Call connect() to initiate the WebSocket
+      // connection when the page loads.
+      // ==========================================
+
+      // YOUR CODE HERE:
+
+
+      // ==========================================
+      // EXERCISE 4: Test it!
+      //
+      // 1. Start the server: go run main.go
+      // 2. Open http://localhost:8080
+      // 3. You should see "Connected to server!"
+      // 4. Stop the server (Ctrl+C)
+      // 5. You should see "Disconnected" and then
+      //    it should try to reconnect
+      // 6. Start the server again
+      // 7. It should auto-reconnect!
+      //
+      // Check the browser console for any errors.
+      // ==========================================
+    </script>
+
+  </body>
+</html>

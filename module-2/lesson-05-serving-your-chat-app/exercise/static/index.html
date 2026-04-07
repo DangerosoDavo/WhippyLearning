@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ChatApp</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #1a1a2e;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      #chat-app {
+        width: 420px;
+        height: 650px;
+        background-color: white;
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      #chat-header {
+        background-color: #6c5ce7;
+        color: white;
+        padding: 12px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      #chat-header h1 {
+        font-size: 18px;
+        font-weight: normal;
+      }
+
+      #username-input {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 12px;
+        font-size: 12px;
+        width: 90px;
+        outline: none;
+      }
+
+      #chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 15px;
+        background-color: #f8f9fa;
+      }
+
+      .message {
+        max-width: 75%;
+        padding: 10px 15px;
+        margin: 4px 10px;
+        border-radius: 18px;
+        font-size: 14px;
+        word-wrap: break-word;
+      }
+
+      .message.sent {
+        background-color: #6c5ce7;
+        color: white;
+        margin-left: auto;
+      }
+
+      .message.received {
+        background-color: #e9ecef;
+        color: #333;
+        margin-right: auto;
+      }
+
+      .sender-name {
+        font-size: 11px;
+        color: #999;
+        margin: 8px 12px 2px 12px;
+      }
+
+      .sender-name.sent-name {
+        text-align: right;
+      }
+
+      .time-stamp {
+        font-size: 10px;
+        color: #bbb;
+        margin: 1px 12px 4px 12px;
+      }
+
+      .time-stamp.sent-time {
+        text-align: right;
+      }
+
+      #chat-input-area {
+        display: flex;
+        padding: 10px;
+        background-color: white;
+        border-top: 1px solid #eee;
+      }
+
+      #message-input {
+        flex: 1;
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        font-size: 14px;
+        outline: none;
+      }
+
+      #message-input:focus {
+        border-color: #6c5ce7;
+      }
+
+      #send-btn {
+        background-color: #6c5ce7;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin-left: 8px;
+        border-radius: 20px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      #send-btn:hover {
+        background-color: #5a4bd1;
+      }
+
+      #connection-status {
+        font-size: 11px;
+        padding: 4px 12px;
+        text-align: center;
+        background-color: #fff3cd;
+        color: #856404;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="chat-app">
+      <div id="chat-header">
+        <h1>ChatApp</h1>
+        <input type="text" id="username-input" value="Bret" placeholder="Your name">
+      </div>
+
+      <!-- We'll use this status bar in later lessons -->
+      <div id="connection-status">Running locally (no server connection yet)</div>
+
+      <div id="chat-messages"></div>
+
+      <div id="chat-input-area">
+        <input type="text" id="message-input" placeholder="Type a message...">
+        <button id="send-btn">Send</button>
+      </div>
+    </div>
+
+    <script>
+      // ==========================================
+      // This is the Module 1 chat app, now served
+      // by our Go server! In the next few lessons,
+      // we'll replace localStorage with WebSockets.
+      // ==========================================
+
+      let messages = [];
+      let chatMessages = document.getElementById("chat-messages");
+      let messageInput = document.getElementById("message-input");
+      let sendBtn = document.getElementById("send-btn");
+      let usernameInput = document.getElementById("username-input");
+
+      function displayMessage(message) {
+        let currentUser = usernameInput.value.trim() || "Anonymous";
+
+        let senderDiv = document.createElement("div");
+        senderDiv.classList.add("sender-name");
+        senderDiv.textContent = message.sender;
+        if (message.sender === currentUser) {
+          senderDiv.classList.add("sent-name");
+        }
+
+        let messageDiv = document.createElement("div");
+        messageDiv.classList.add("message");
+        messageDiv.textContent = message.text;
+        if (message.sender === currentUser) {
+          messageDiv.classList.add("sent");
+        } else {
+          messageDiv.classList.add("received");
+        }
+
+        let timeDiv = document.createElement("div");
+        timeDiv.classList.add("time-stamp");
+        timeDiv.textContent = message.time;
+        if (message.sender === currentUser) {
+          timeDiv.classList.add("sent-time");
+        }
+
+        chatMessages.appendChild(senderDiv);
+        chatMessages.appendChild(messageDiv);
+        chatMessages.appendChild(timeDiv);
+      }
+
+      function sendMessage() {
+        let text = messageInput.value.trim();
+        let currentUser = usernameInput.value.trim() || "Anonymous";
+
+        if (!text) return;
+
+        let message = {
+          sender: currentUser,
+          text: text,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        };
+
+        messages.push(message);
+        displayMessage(message);
+
+        messageInput.value = "";
+        messageInput.focus();
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      sendBtn.addEventListener("click", function() {
+        sendMessage();
+      });
+
+      messageInput.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+          sendMessage();
+        }
+      });
+
+      messageInput.focus();
+
+      displayMessage({
+        sender: "System",
+        text: "Welcome to ChatApp! This is now being served by your Go server.",
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      });
+    </script>
+
+  </body>
+</html>

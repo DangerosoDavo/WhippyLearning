@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WebSocket Echo Test</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #1a1a2e;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      #app {
+        width: 400px;
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      }
+      #header {
+        background-color: #00b894;
+        color: white;
+        padding: 15px 20px;
+      }
+      #header h1 { font-size: 18px; font-weight: normal; }
+      #status {
+        padding: 8px 20px;
+        font-size: 12px;
+        background-color: #fff3cd;
+        color: #856404;
+      }
+      #status.connected {
+        background-color: #d4edda;
+        color: #155724;
+      }
+      #messages {
+        height: 300px;
+        overflow-y: auto;
+        padding: 15px;
+        background-color: #f8f9fa;
+      }
+      .msg {
+        padding: 6px 12px;
+        margin: 4px 0;
+        border-radius: 8px;
+        font-size: 13px;
+      }
+      .msg.sent { background-color: #00b894; color: white; text-align: right; }
+      .msg.received { background-color: #e9ecef; color: #333; }
+      .msg.system { background-color: #fff3cd; color: #856404; font-style: italic; }
+      #input-area {
+        display: flex;
+        padding: 10px;
+        border-top: 1px solid #eee;
+      }
+      #msg-input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        outline: none;
+        font-size: 14px;
+      }
+      #send-btn {
+        background: #00b894;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin-left: 8px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div id="header"><h1>WebSocket Echo Test</h1></div>
+      <div id="status">Connecting...</div>
+      <div id="messages"></div>
+      <div id="input-area">
+        <input type="text" id="msg-input" placeholder="Type a message...">
+        <button id="send-btn">Send</button>
+      </div>
+    </div>
+
+    <script>
+      let messages = document.getElementById("messages");
+      let input = document.getElementById("msg-input");
+      let sendBtn = document.getElementById("send-btn");
+      let status = document.getElementById("status");
+
+      function addMessage(text, type) {
+        let div = document.createElement("div");
+        div.classList.add("msg", type);
+        div.textContent = text;
+        messages.appendChild(div);
+        messages.scrollTop = messages.scrollHeight;
+      }
+
+      // Connect to the WebSocket server
+      let ws = new WebSocket("ws://localhost:8080/ws");
+
+      ws.onopen = function() {
+        status.textContent = "Connected!";
+        status.classList.add("connected");
+        addMessage("Connected to server!", "system");
+      };
+
+      ws.onmessage = function(event) {
+        addMessage("Echo: " + event.data, "received");
+      };
+
+      ws.onclose = function() {
+        status.textContent = "Disconnected";
+        status.classList.remove("connected");
+        addMessage("Disconnected from server.", "system");
+      };
+
+      function sendMessage() {
+        let text = input.value.trim();
+        if (!text || ws.readyState !== WebSocket.OPEN) return;
+
+        ws.send(text);
+        addMessage("You: " + text, "sent");
+        input.value = "";
+        input.focus();
+      }
+
+      sendBtn.addEventListener("click", sendMessage);
+      input.addEventListener("keydown", function(e) {
+        if (e.key === "Enter") sendMessage();
+      });
+
+      input.focus();
+    </script>
+  </body>
+</html>

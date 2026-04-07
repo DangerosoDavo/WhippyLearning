@@ -51,5 +51,6 @@ git pull
 | Module | Topic | What You'll Build |
 |--------|-------|-------------------|
 | 1 | HTML, CSS & JavaScript Basics | A chat application |
+| 2 | Go Backend & WebSockets | A real-time multi-user chat server |
 
 Happy coding!
